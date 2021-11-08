@@ -1,11 +1,13 @@
 const play = ["rock", "paper", "scissors"];
-const matrice = [["tie", false, true], [true, "tie", false], [false, true, "tie"]];
+const matrice = [
+                    ["tie", false, true],
+                    [true, "tie", false],
+                    [false, true, "tie"]
+                ];
 
-function round() {
+function playRound() {
     let msg;
-    let win;
-    let tie = false;
-    playerSelection = prompt("choix?");
+    playerSelection = prompt("Choissisez Rock, Paper ou Scissors.");
     let humanPlay = play.findIndex(elem=>elem == playerSelection.toLowerCase());
     let computerPlay = Math.floor(Math.random() * 3);
     const score = matrice[humanPlay][computerPlay];
@@ -19,9 +21,9 @@ function round() {
     console.log(msg);
 }  
 
-function game() {
+function playGame() {
     for (let index = 1; index <= 5; index++) {
         console.log(index);
-        round();
+        playRound();
      }
 }
