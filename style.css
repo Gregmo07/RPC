@@ -27,7 +27,7 @@ button{
     height: 75px;
 }
 
-kbd{
-    display: block;
-    padding: 4px;
+
+.scores{
+    text-align: center;
 }
