@@ -5,10 +5,9 @@ const matrice = [
                     [false, true, "tie"]
                 ];
 
-function playRound() {
+function playRound(e) {
     let msg;
-    playerSelection = prompt("Choissisez Rock, Paper ou Scissors.");
-    let humanPlay = play.findIndex(elem=>elem == playerSelection.toLowerCase());
+    let humanPlay = e.target.id;
     let computerPlay = Math.floor(Math.random() * 3);
     const score = matrice[humanPlay][computerPlay];
     if (score == "tie"){
@@ -21,9 +20,4 @@ function playRound() {
     console.log(msg);
 }  
 
-function playGame() {
-    for (let index = 1; index <= 5; index++) {
-        console.log(index);
-        playRound();
-     }
-}
+window.addEventListener('click', playRound);
