@@ -16,7 +16,8 @@ const restartButton = document.querySelector('.restart');
 function playRound(e) {
 
     if (!e.target.id || humanScore == 5 || computerScore == 5) return;
-
+    const test = document.querySelector(`button[id="${e.target.id}"]`);
+    test.classList.add('playing');
     let humanPlay = e.target.id;
     let computerPlay = Math.floor(Math.random() * 3);
     const roundScore = matrice[humanPlay][computerPlay];

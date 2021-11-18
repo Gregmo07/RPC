@@ -29,8 +29,14 @@ html {
     width: 75px;
     height: 75px;
     border-width: 10px;
+    transition: all 2s ease;
+    
 }
-
+.playing {
+    transform: scale(1.1);
+    border-color: #ffc600;
+    box-shadow: 0 0 1rem #ffc600;
+  }
 
 .scores{
     text-align: center;
