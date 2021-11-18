@@ -11,7 +11,7 @@ const result = document.querySelector('.result');
 const score = document.querySelector('.score');
 const scores = document.querySelector('.scores');
 const choiceButton = document.getElementsByClassName("key");
-const restart = document.getElementsByClassName("restart");
+const restartButton = document.querySelector('.restart');
 
 function playRound(e) {
 
@@ -46,21 +46,24 @@ function checkScore(humanScore, computerScore) {
     }
     
     const winner =  document.createElement('p');
+    winner.setAttribute("id", "winner");
     winner.textContent = `Le vainqueur est : ${gagnant}`;
     scores.appendChild(winner);
-    restart.style.visibility = "visible";
 
+    restartButton.style.visibility = "visible";
+    restartButton.addEventListener('click', restartGame);
 
        
 }
 
 function restartGame() {
-    console.log("tototo");
     humanScore = 0;
     computerScore = 0;
     result.textContent = "";
     score.textContent = "0 - 0";
-    restart.style.visibility = "hidden";
+    restartButton.style.visibility = "hidden";
+    const winner =  document.getElementById('winner');
+    winner.remove();
     
 }
 
@@ -68,3 +71,5 @@ function restartGame() {
     Array.from(choiceButton).forEach(element => {
         element.addEventListener('click', playRound);
     });
+
+    
