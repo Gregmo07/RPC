@@ -16,12 +16,20 @@ const restartButton = document.querySelector('.restart');
 function playRound(e) {
 
     if (!e.target.id || humanScore == 5 || computerScore == 5) return;
-    const test = document.querySelector(`button[id="${e.target.id}"]`);
-    test.classList.add('playing');
+    const buttonClicked = document.querySelector(`button[id="${e.target.id}"]`);
+    buttonClicked.classList.add('playing');
+    const wordChoose = document.querySelector(`span[id="word${e.target.id}"]`);
+    wordChoose.classList.add('playing');
+
     let humanPlay = e.target.id;
     let computerPlay = Math.floor(Math.random() * 3);
     const roundScore = matrice[humanPlay][computerPlay];
+    getScore(roundScore, humanPlay, computerPlay);  
+}  
 
+
+
+function getScore(roundScore, humanPlay, computerPlay){
     if (roundScore == "tie"){
         msg = `Egalité ! ${play[computerPlay]} = ${play[humanPlay]}`;
     } else if (roundScore){
@@ -31,12 +39,10 @@ function playRound(e) {
         msg = `Vous avez perdu! ${play[computerPlay]} bat ${play[humanPlay]}`;
         computerScore += 1;
     }
-
     result.textContent = `${msg} ! `;
     score.textContent = `${humanScore} - ${computerScore}`;
     if (humanScore == 5 || computerScore == 5)  checkScore(humanScore, computerScore);
-    
-}  
+}
 
 function checkScore(humanScore, computerScore) {
     let gagnant;
@@ -52,9 +58,7 @@ function checkScore(humanScore, computerScore) {
     scores.appendChild(winner);
 
     restartButton.style.visibility = "visible";
-    restartButton.addEventListener('click', restartGame);
-
-       
+    restartButton.addEventListener('click', restartGame);     
 }
 
 function restartGame() {
@@ -67,9 +71,16 @@ function restartGame() {
     winner.remove();
     
 }
+function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+  }
 
-    
-    Array.from(choiceButton).forEach(element => {
+  
+const keys = Array.from(document.querySelectorAll('.key'));
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition)); 
+
+Array.from(choiceButton).forEach(element => {
         element.addEventListener('click', playRound);
     });
 
